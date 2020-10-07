@@ -5,7 +5,6 @@ set -ex
 DB_NAME="library_api_dev"
 
 if [[ "$1" == "--down" ]]; then
-   # rm -rf ./env ./.env
    dropdb "${DB_NAME}"
    exit 0
 fi
@@ -23,6 +22,8 @@ cp .env.example .env
 
 createdb "${DB_NAME}"
 
-echo 'db.create_all()' | flask shell
+echo 'from library_api import db; db.create_all()' | flask shell
 
-flask runserver
+flask db:seed
+
+flask run

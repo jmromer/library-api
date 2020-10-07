@@ -11,19 +11,21 @@ class Config(object):
     DEBUG = False
     TESTING = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = os.environ['LIBRARY_API_DB_URI']
 
 
 class ProductionConfig(Config):
-    pass
+    SQLALCHEMY_DATABASE_URI = os.environ.get('FLASK_DB_URI_PROD')
 
 
 class DevelopmentConfig(Config):
     DEBUG = True
+    SQLALCHEMY_DATABASE_URI = os.environ['FLASK_DB_URI_DEV']
 
 
 class TestingConfig(Config):
+    DEBUG = True
     TESTING = True
+    SQLALCHEMY_DATABASE_URI = os.environ['FLASK_DB_URI_TEST']
 
 
 config = {
