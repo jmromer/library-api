@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -ex
+
+DB_NAME="library_api_dev"
+
+if [[ "$1" == "--down" ]]; then
+   # rm -rf ./env ./.env
+   dropdb "${DB_NAME}"
+   exit 0
+fi
+
+pip install virtualenv
+
+virtualenv ./env --python=3.9
+
+. ./env/bin/activate
+
+pip install -U pip
+pip install -r requirements.txt
+
+cp .env.example .env
+
+createdb "${DB_NAME}"
+
+echo 'db.create_all()' | flask shell
+
+flask runserver

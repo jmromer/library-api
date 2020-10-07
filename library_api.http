@@ -1,0 +1,17 @@
+:baseurl = http://localhost:5000/api/v1
+
+# List all requests
+GET :baseurl/request
+#
+
+# Create a request
+POST :baseurl/request
+#
+
+# Retrieve a request
+GET :baseurl/request/1
+#
+
+# Delete a request
+DELETE :baseurl/request/1
+#
