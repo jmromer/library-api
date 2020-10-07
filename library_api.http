@@ -1,17 +1,24 @@
 :baseurl = http://localhost:5000/api/v1
+:id = 18
+
+# Create a request
+POST :baseurl/request
+Content-Type: application/json
+
+{
+  "email": "new-request@example.com",
+  "title": "book request"
+}
+#
 
 # List all requests
 GET :baseurl/request
 #
 
-# Create a request
-POST :baseurl/request
-#
-
 # Retrieve a request
-GET :baseurl/request/1
+GET :baseurl/request/:id
 #
 
 # Delete a request
-DELETE :baseurl/request/1
+DELETE :baseurl/request/:id
 #
